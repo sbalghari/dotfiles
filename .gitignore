@@ -1,0 +1,9 @@
+.config/atuin/history.db
+.config/atuin/history.db-shm
+.config/atuin/history.db-wal
+.config/gtk-3.0/noctalia.css
+.config/hypr/noctalia.lua
+.config/kitty/current-theme.conf
+.config/kitty/themes/
+.config/qt5ct/colors/
+.config/qt6ct/colors/
