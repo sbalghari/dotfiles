@@ -1,0 +1,105 @@
+[shell]
+app_icon_colorize = false
+avatar_path = ""
+clipboard_auto_paste = "auto"
+clipboard_confirm_clear_history = true
+clipboard_enabled = true
+clipboard_history_max_entries = 100
+clipboard_image_action_command = ""
+corner_radius_scale = 0.0
+date_format = "%A, %x"
+disable_mipmaps = false
+font_family = "sans-serif"
+launch_apps_as_systemd_services = false
+middle_click_opens_widget_settings = true
+niri_overview_type_to_launch_enabled = false
+offline_mode = false
+password_style = "random"
+polkit_agent = false
+screen_time_enabled = true
+settings_show_advanced = true
+setup_wizard_enabled = true
+shared_gl_context = true
+show_location = true
+telemetry_enabled = false
+time_format = "{:%H:%M}"
+ui_scale = 0.89999997615814209
+
+[shell.animation]
+enabled = true
+speed = 1.0
+
+[shell.mpris]
+blacklist = []
+
+[shell.panel]
+borders = true
+clipboard_placement = "floating"
+control_center_placement = "floating"
+launcher_categories = false
+launcher_compact = false
+launcher_placement = "floating"
+launcher_session_search = false
+launcher_show_icons = true
+open_near_click_clipboard = true
+open_near_click_control_center = true
+open_near_click_launcher = true
+open_near_click_session = true
+open_near_click_wallpaper = true
+session_placement = "floating"
+shadow = true
+transparency_mode = "glass"
+wallpaper_placement = "floating"
+
+[shell.screen_corners]
+enabled = false
+size = 1
+
+[shell.screenshot]
+copy_to_clipboard = true
+directory = "/home/sbalghari/Pictures/Screenshots"
+filename_pattern = ""
+freeze_screen = true
+pipe_command = ""
+pipe_to_command = false
+save_to_file = true
+
+[[shell.session.actions]]
+action = "lock"
+command = ""
+enabled = true
+glyph = ""
+label = ""
+shortcut = "1"
+variant = "default"
+
+[[shell.session.actions]]
+action = "logout"
+command = ""
+enabled = true
+glyph = ""
+label = ""
+shortcut = "2"
+variant = "default"
+
+[[shell.session.actions]]
+action = "reboot"
+command = ""
+enabled = true
+glyph = ""
+label = ""
+shortcut = "4"
+variant = "default"
+
+[[shell.session.actions]]
+action = "shutdown"
+command = ""
+enabled = true
+glyph = ""
+label = ""
+shortcut = "5"
+variant = "destructive"
+
+[shell.shadow]
+alpha = 0.55000001192092896
+direction = "down"

@@ -1,0 +1,67 @@
+[bar]
+order = ["default"]
+
+[bar.default]
+auto_hide = false
+background_opacity = 0.7
+border = "outline"
+border_width = 0.0
+capsule = true
+capsule_border = "outline"
+capsule_fill = "primary"
+capsule_foreground = "on_surface"
+capsule_opacity = 0.15
+capsule_padding = 6.0
+capsule_radius = 0
+center = ["active_window"]
+contact_shadow = false
+enabled = true
+end = [
+    "group:g2",
+    "brightness",
+    "bluetooth",
+    "volume",
+    "battery",
+    "network",
+    "tray",
+    "clock",
+    "notifications",
+]
+font_weight = 500
+layer = "overlay"
+margin_edge = 0
+margin_ends = 0
+padding = 4
+panel_overlap = 1
+position = "top"
+radius = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+radius_top_left = 0
+radius_top_right = 0
+reserve_space = true
+scale = 0.9
+shadow = true
+start = ["workspaces", "group:g3", "theme_mode", "weather", "media"]
+thickness = 30
+widget_spacing = 4
+
+[[bar.default.capsule_group]]
+border = "outline"
+fill = "primary"
+foreground = "on_surface"
+id = "g3"
+members = ["ram", "cpu", "temp"]
+opacity = 0.5
+padding = 6.0
+radius = 0.0
+
+[[bar.default.capsule_group]]
+border = "outline"
+fill = "primary"
+foreground = "on_surface"
+id = "g2"
+members = ["network_rx", "network_tx"]
+opacity = 0.5
+padding = 6.0
+radius = 0.0
