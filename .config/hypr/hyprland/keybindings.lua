@@ -2,53 +2,173 @@
 local mainMod = "SUPER"
 local noctalia_ipc = "noctalia msg"
 
+local MAX_ZOOM = 3
+local MIN_ZOOM = 1
+local ZOOM_TOGGLE_FACTOR = 2
+
+--------------------------------
+------ Helper Functions --------
+--------------------------------
+
+---@param offset number
+---@return nil
+local function zoom(offset)
+    local current = hl.get_config("cursor.zoom_factor")
+    if offset ~= nil then
+        current = current + offset
+    elseif current ~= MIN_ZOOM then
+        current = MIN_ZOOM
+    else
+        current = ZOOM_TOGGLE_FACTOR
+    end
+    current = math.max(MIN_ZOOM, math.min(MAX_ZOOM, current))
+    hl.config({ cursor = { zoom_factor = current } })
+end
+
+local function layout_bind(bind_table)
+    return function()
+        local workspace = hl.get_active_special_workspace() or
+            hl.get_active_workspace()
+
+        if not workspace then
+            return
+        end
+
+        local layout = workspace.tiled_layout
+
+        if bind_table[layout] then
+            hl.dispatch(bind_table[layout])
+        end
+    end
+end
+
 -----------------------
------- General --------
+------ Window ---------
 -----------------------
 
-hl.bind(mainMod .. " + Q ", hl.dsp.window.close(), { description = "Exit The Focused Window" })
-hl.bind(mainMod .. " + A ", hl.dsp.window.float({
-    action = "toggle"
-}), { description = "Toggle Floating Mode" })
-hl.bind(mainMod .. " + F ", hl.dsp.window.fullscreen(), { description = "Fullscreen The Active Window" })
-hl.bind(mainMod .. " + SHIFT + C ", hl.dsp.exec_cmd(noctalia_ipc .. " wallpaper-random"), {
-    description = "Change Wallpaper Randomly"
+hl.bind(mainMod .. " + Q ", hl.dsp.window.close(), {
+    description = "Close focused window"
 })
-hl.bind(mainMod .. " + SHIFT + W ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle wallpaper"), {
-    description = "Toggle Wallpaper Selector"
+
+hl.bind(mainMod .. " + A ", hl.dsp.window.float({ action = "toggle" }), {
+    description = "Toggle floating mode"
 })
-hl.bind(mainMod .. " + SHIFT + R ", hl.dsp.exec_cmd(noctalia_ipc .. " config-reload"), {
-    description = "Reload Noctalia's configs"
+
+hl.bind(mainMod .. " + Z ", zoom, {
+    description = "Toggle zoom"
 })
-hl.bind(mainMod .. " + CTRL + T ", hl.dsp.exec_cmd(noctalia_ipc .. " bar-toggle"), {
-    description = "Toggle Bar"
+
+hl.bind(mainMod .. " + F ", hl.dsp.window.fullscreen(), {
+    description = "Toggle fullscreen"
 })
-hl.bind(mainMod .. " + SPACE ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle launcher"), {
-    description = "Toggle Application Launcher"
+
+
+-----------------------
+------ Focus/Layout ---
+-----------------------
+
+hl.bind(mainMod .. " + J ", layout_bind({
+    scrolling = hl.dsp.layout("swapcol l"),
+    dwindle   = hl.dsp.layout("swapsplit"),
+    monocle   = hl.dsp.layout("cycleprev"),
+    master    = hl.dsp.layout("cycleprev"),
+}), {
+    description = "Focus previous window / cycle backward"
 })
-hl.bind(mainMod .. " + V ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle clipboard"), {
-    description = "Toggle Clipboard Manager"
+
+hl.bind(mainMod .. " + K ", layout_bind({
+    scrolling = hl.dsp.layout("swapcol r"),
+    dwindle   = hl.dsp.layout("togglesplit"),
+    monocle   = hl.dsp.layout("cyclenext"),
+    master    = hl.dsp.layout("cyclenext"),
+}), {
+    description = "Focus next window / cycle forward"
 })
-hl.bind(mainMod .. " + comma ", hl.dsp.exec_cmd(noctalia_ipc .. " settings-toggle"), {
-    description = "Toggle Settings App"
-})
-hl.bind(mainMod .. " + D ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle control-center"), {
-    description = "Toggle Control Center"
-})
-hl.bind(mainMod .. " + B ", hl.dsp.exec_cmd(noctalia_ipc .. " plugin:keybind-cheatsheet toggle"), {
-    description = "Toggle Keybinds Cheatsheet"
-})
+
+
+-----------------------
+------ Apps ----------
+-----------------------
+
 hl.bind(mainMod .. " + E ", hl.dsp.exec_cmd("nautilus"), {
-    description = "Launch File Manager"
+    description = "Open file manager"
 })
+
 hl.bind(mainMod .. " + RETURN ", hl.dsp.exec_cmd("kitty"), {
-    description = "Launch Kitty Terminal"
+    description = "Open terminal"
 })
+
 hl.bind(mainMod .. " + SHIFT + escape ", hl.dsp.exec_cmd("missioncenter"), {
-    description = "Launch System Monitor"
+    description = "Open system monitor"
 })
+
+
+-----------------------
+------ Panels ---------
+-----------------------
+
+hl.bind(mainMod .. " + SPACE ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle launcher"), {
+    description = "Toggle application launcher"
+})
+
+hl.bind(mainMod .. " + V ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle clipboard"), {
+    description = "Toggle clipboard manager"
+})
+
+hl.bind(mainMod .. " + D ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle control-center"), {
+    description = "Toggle control center"
+})
+
 hl.bind(mainMod .. " + SHIFT + Q ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle session"), {
-    description = "Toggle Session Manager"
+    description = "Toggle session menu"
+})
+
+hl.bind(mainMod .. " + B ", hl.dsp.exec_cmd(noctalia_ipc .. " plugin:keybind-cheatsheet toggle"), {
+    description = "Toggle keybind cheatsheet"
+})
+
+
+-----------------------
+------ System ---------
+-----------------------
+
+hl.bind(mainMod .. " + T ", hl.dsp.exec_cmd(noctalia_ipc .. " bar-toggle"), {
+    description = "Toggle bar"
+})
+
+hl.bind(mainMod .. " + SHIFT + W ", hl.dsp.exec_cmd(noctalia_ipc .. " panel-toggle wallpaper"), {
+    description = "Toggle wallpaper selector"
+})
+
+hl.bind(mainMod .. " + SHIFT + C ", hl.dsp.exec_cmd(noctalia_ipc .. " wallpaper-random"), {
+    description = "Random wallpaper"
+})
+
+hl.bind(mainMod .. " + SHIFT + R ", hl.dsp.exec_cmd(noctalia_ipc .. " config-reload"), {
+    description = "Reload configuration"
+})
+
+hl.bind(mainMod .. " + comma ", hl.dsp.exec_cmd(noctalia_ipc .. " settings-toggle"), {
+    description = "Toggle settings app"
+})
+
+-------------------------------
+------ Media Controls ---------
+-------------------------------
+
+hl.bind(mainMod .. " + bracketright ", hl.dsp.exec_cmd(noctalia_ipc .. " media next"), {
+    locked = true,
+    description = "Next Media Track"
+})
+
+hl.bind(mainMod .. " + P ", hl.dsp.exec_cmd(noctalia_ipc .. " media toggle"), {
+    locked = true,
+    description = "Pause Media"
+})
+
+hl.bind(mainMod .. " + bracketleft ", hl.dsp.exec_cmd(noctalia_ipc .. " media previous"), {
+    locked = true,
+    description = "Previous Media Track"
 })
 
 ----------------------------------
@@ -148,23 +268,23 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctalia_ipc .. " brightness-do
     description = "Decrease Brightness"
 })
 
--- Playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd(noctalia_ipc .. " media next"), {
-    locked = true,
-    description = "Next Media Track"
-})
+-- Media
+-- hl.bind("XF86AudioNext", hl.dsp.exec_cmd(noctalia_ipc .. " media next"), {
+--     locked = true,
+--     description = "Next Media Track"
+-- })
 
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd(noctalia_ipc .. " media pause"), {
-    locked = true,
-    description = "Pause Media"
-})
+-- hl.bind("XF86AudioPause", hl.dsp.exec_cmd(noctalia_ipc .. " media pause"), {
+--     locked = true,
+--     description = "Pause Media"
+-- })
 
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(noctalia_ipc .. " media play"), {
-    locked = true,
-    description = "Play Media"
-})
+-- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(noctalia_ipc .. " media play"), {
+--     locked = true,
+--     description = "Play Media"
+-- })
 
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(noctalia_ipc .. " media previous"), {
-    locked = true,
-    description = "Previous Media Track"
-})
+-- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(noctalia_ipc .. " media previous"), {
+--     locked = true,
+--     description = "Previous Media Track"
+-- })
