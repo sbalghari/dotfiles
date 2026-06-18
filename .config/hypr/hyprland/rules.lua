@@ -15,7 +15,7 @@ hl.window_rule({
     name   = "windowrule-3",
     match  = {
         class =
-        "(waypaper)|(dev.noctalia.Noctalia.Settings)|(org.gnome.Loupe)|(io.missioncenter.MissionCenter)|(org.kde.dolphin)|(org.gnome.Nautilus)|(vlc)|(com.github.th_ch.youtube_music)|(org.gnome.TextEditor)|(org.kde.ark)",
+        "(mpv)|(waypaper)|(dev.noctalia.Noctalia.Settings)|(org.gnome.Loupe)|(io.missioncenter.MissionCenter)|(org.kde.dolphin)|(org.gnome.Nautilus)|(vlc)|(com.github.th_ch.youtube_music)|(org.gnome.TextEditor)|(org.kde.ark)",
     },
     float  = true,
     center = 1,
@@ -42,7 +42,7 @@ local suppressMaximizeRule = hl.window_rule({
 })
 suppressMaximizeRule:set_enabled(true)
 
--- Fix some dragging issues with XWayland
+-- Fix some dragging issues with XWayland - idk, it was in the docs
 hl.window_rule({
     name     = "fix-xwayland-drags",
     match    = {
@@ -67,10 +67,3 @@ hl.layer_rule({
   blur = true,
   blur_popups = true,
 })
-
--- Persistent
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "2", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "4", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true })
