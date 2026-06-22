@@ -1,0 +1,127 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](bg:red fg:red)\
+$os\
+$username\
+[](bg:yellow fg:red)\
+$directory\
+[](bg:green fg:yellow)\
+$git_branch\
+$git_status\
+[](fg:green bg:blue)\
+$c\
+$rust\
+$golang\
+$nodejs\
+$bun\
+$python\
+[](fg:blue)\
+$cmd_duration\
+$line_break
+$character"""
+
+[os]
+disabled = false
+style = "bg:red fg:black"
+
+[os.symbols]
+Windows = ""
+Linux = "󰌽"
+Arch = "󰣇"
+
+[username]
+show_always = true
+style_user = "bg:red fg:black"
+style_root = "bg:red fg:black"
+format = '[ $user]($style)'
+
+[directory]
+style = "bg:yellow fg:black"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+"home" = " "
+"Projects" = " "
+"GitHub" = " "
+"Desktop" = " "
+"Videos" = " "
+"Templates" = " "
+"Public" = " "
+"src" = " "
+"config" = " "
+".config" = " "
+"dotfiles" = " "
+"workspace" = " "
+"development" = " "
+"build" = " "
+"dist" = " "
+"node_modules" = " "
+"assets" = " "
+"components" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:green"
+format = '[[ $symbol $branch ](fg:black bg:green)]($style)'
+
+[git_status]
+style = "bg:green"
+format = '[[($all_status$ahead_behind )](fg:black bg:green)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
+
+[bun]
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
+
+[c]
+symbol = " "
+style = "bg:blue"
+format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
+
+[python]
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:black bg:blue)]($style)'
+
+[line_break]
+disabled = true
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[❯](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:magenta)'
+vimcmd_replace_symbol = '[❮](bold fg:magenta)'
+vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+
+[cmd_duration]
+show_milliseconds = true
+format = " $duration "
+style = "bg:cyan fg:black"
+disabled = false
+show_notifications = true
+min_time_to_notify = 45000
