@@ -151,6 +151,9 @@ hl.bind(mainMod .. " + SHIFT + R ", hl.dsp.exec_cmd(noctalia_ipc .. " config-rel
 hl.bind(mainMod .. " + comma ", hl.dsp.exec_cmd(noctalia_ipc .. " settings-toggle"), {
     description = "Toggle settings app"
 })
+hl.bind(mainMod .. " + SHIFT + S ", hl.dsp.exec_cmd(noctalia_ipc .. " screenshot-region"), {
+    description = "Screenshot region"
+})
 
 -------------------------------
 ------ Media Controls ---------
