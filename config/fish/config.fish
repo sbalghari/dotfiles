@@ -24,6 +24,32 @@ function bak
     cp $argv[1] $argv[1].bak
 end
 
+# Complile a cpp source file -> for basic usage
+function cpp
+    if test (count $argv) -lt 1
+        echo "Usage: cpp <file.cpp> [extra g++ flags]"
+        return 1
+    end
+
+    set file $argv[1]
+
+    if not test -f "$file"
+        echo "File not found: $file"
+        return 1
+    end
+
+    set output (string replace -r '\.cpp$' '' "$file")
+    g++ -std=c++23 -Wall -Wextra -Wpedantic -O2 "$file" -o "$output" $argv[2..-1]
+end
+
+# Complile and Run a cpp source file -> for basic usage
+function cppr
+    cpp $argv
+    or return
+    set exe (string replace -r '\.cpp$' '' "$argv[1]")
+    ./$exe
+end
+
 #########################################
 ## Aliases
 #########################################
