@@ -16,8 +16,9 @@ $golang\
 $nodejs\
 $bun\
 $python\
-[](fg:blue)\
+[](fg:blue bg:red)\
 $cmd_duration\
+[](fg:red)\
 $line_break
 $character"""
 
@@ -47,22 +48,13 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = "󰝚 "
 "Pictures" = " "
-"Developer" = "󰲋 "
 "home" = " "
 "Projects" = " "
 "GitHub" = " "
 "Desktop" = " "
 "Videos" = " "
-"Templates" = " "
-"Public" = " "
-"src" = " "
 "config" = " "
 ".config" = " "
-"dotfiles" = " "
-"workspace" = " "
-"development" = " "
-"build" = " "
-"dist" = " "
 "node_modules" = " "
 "assets" = " "
 "components" = " "
@@ -120,8 +112,6 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
 show_milliseconds = true
-format = " $duration "
-style = "bg:cyan fg:black"
+format = "[ 󱎫 $duration ](bg:red fg:black)"
 disabled = false
-show_notifications = true
-min_time_to_notify = 45000
+
