@@ -1,117 +1,103 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# Don't print a new line at the start of the prompt
+add_newline = false
+# Pipes ╰─ ╭─
+# Powerline symbols                                     
+# Wedges 🭧🭒 🭣🭧🭓
+# Random noise 🬖🬥🬔🬗
+# Cool stuff 󰜥   
 
+# format = """
+# $directory $fill $git_branch $cmd_duration
+#  $character"""
 format = """
-[](bg:red fg:red)\
-$os\
-$username\
-[](bg:yellow fg:red)\
-$directory\
-[](bg:green fg:yellow)\
-$git_branch\
-$git_status\
-[](fg:green bg:blue)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$bun\
-$python\
-[](fg:blue bg:red)\
-$cmd_duration\
-[](fg:red)\
-$line_break
-$character"""
+$cmd_duration $directory$git_branch
+  $character"""
 
-[os]
-disabled = false
-style = "bg:red fg:black"
+[fill]
+symbol = '-'
+style = 'fg:245'
 
-[os.symbols]
-Windows = ""
-Linux = "󰌽"
-Arch = "󰣇"
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[ ](bold fg:green)"
+error_symbol = "[ ](bold fg:red)"
 
-[username]
-show_always = true
-style_user = "bg:red fg:black"
-style_root = "bg:red fg:black"
-format = '[ $user]($style)'
-
-[directory]
-style = "bg:yellow fg:black"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"home" = " "
-"Projects" = " "
-"GitHub" = " "
-"Desktop" = " "
-"Videos" = " "
-"config" = " "
-".config" = " "
-"node_modules" = " "
-"assets" = " "
-"components" = " "
-
-[git_branch]
-symbol = ""
-style = "bg:green"
-format = '[[ $symbol $branch ](fg:black bg:green)]($style)'
-
-[git_status]
-style = "bg:green"
-format = '[[($all_status$ahead_behind )](fg:black bg:green)]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:blue"
-format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
-
-[bun]
-symbol = ""
-style = "bg:blue"
-format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
-
-[c]
-symbol = " "
-style = "bg:blue"
-format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
-
-[rust]
-symbol = ""
-style = "bg:blue"
-format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:blue"
-format = '[[ $symbol( $version) ](fg:black bg:blue)]($style)'
-
-[python]
-symbol = ""
-style = "bg:blue"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:black bg:blue)]($style)'
-
-[line_break]
+# Disable the package module, hiding it from the prompt completely
+[package]
 disabled = true
 
-[character]
+[git_branch]
+style = "bg: blue"
+symbol = "󰘬"
+truncation_length = 12
+truncation_symbol = ""
+format = " 󰜥 [](bold fg:blue)[$symbol $branch(:$remote_branch)](fg:black bg:blue)[ ](bold fg:blue)"
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = " "
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = " 🏳 "
+ahead = " 🏎💨 "
+behind = " 😰 "
+diverged = " 😵 "
+untracked = " 🤷 ‍"
+stashed = " 📦 "
+modified = " 📝 "
+staged = '[++\($count\)](green)'
+renamed = " ✍️ "
+deleted = " 🗑 "
+
+[hostname]
+ssh_only = false
+format =  "[•$hostname](bg:blue bold fg:black)[](bold fg:blue)"
+trim_at = ".companyname.com"
 disabled = false
-success_symbol = '[❯](bold fg:green)'
-error_symbol = '[❯](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:magenta)'
-vimcmd_replace_symbol = '[❮](bold fg:magenta)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+
+[line_break]
+disabled = false
+
+[memory_usage]
+disabled = true
+threshold = -1
+symbol = " "
+style = "bold dimmed green"
+
+[time]
+disabled = true
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"
+
+[username]
+style_user = "bold bg:purple fg:black"
+style_root = "red bold"
+format = "[](bold fg:purple)[$user]($style)"
+disabled = false
+show_always = true
+
+[directory]
+home_symbol = " "
+read_only = "  "
+style = "bg:yellow fg:black"
+truncation_length = 2
+truncation_symbol = ".../"
+format = '[](bold fg:yellow)[󰉋 → $path]($style)[](bold fg:yellow)'
+
+
+[directory.substitutions]
+"Desktop" = "  "
+"Documents" = "  "
+"Downloads" = "  "
+"Music" = " 󰎈 "
+"Pictures" = "  "
+"Videos" = "  "
+"GitHub" = " 󰊤 "
 
 [cmd_duration]
-show_milliseconds = true
-format = "[ 󱎫 $duration ](bg:red fg:black)"
-disabled = false
-
+min_time = 0
+format = '[](bold fg:blue)[󰪢 $duration](bold bg:blue fg:black)[](bold fg:blue)'
