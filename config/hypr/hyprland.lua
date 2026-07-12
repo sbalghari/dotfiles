@@ -10,7 +10,7 @@ require("hyprland.monitor")
 require("hyprland.rules")
 
 -- For Noctalia Color templates
-require("noctalia")
+require("noctalia").apply_theme()
 
 -- Startup Apps & Services
 hl.on("hyprland.start", function()
