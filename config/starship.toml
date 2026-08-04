@@ -1,14 +1,7 @@
+palette = "noctalia"
+
 # Don't print a new line at the start of the prompt
 add_newline = false
-# Pipes ╰─ ╭─
-# Powerline symbols                                     
-# Wedges 🭧🭒 🭣🭧🭓
-# Random noise 🬖🬥🬔🬗
-# Cool stuff 󰜥   
-
-# format = """
-# $directory $fill $git_branch $cmd_duration
-#  $character"""
 format = """
 $cmd_duration $directory$git_branch
   $character"""
@@ -17,12 +10,10 @@ $cmd_duration $directory$git_branch
 symbol = '-'
 style = 'fg:245'
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
+[character]
 success_symbol = "[ ](bold fg:green)"
 error_symbol = "[ ](bold fg:red)"
 
-# Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
 
@@ -33,52 +24,8 @@ truncation_length = 12
 truncation_symbol = ""
 format = " 󰜥 [](bold fg:blue)[$symbol $branch(:$remote_branch)](fg:black bg:blue)[ ](bold fg:blue)"
 
-[git_commit]
-commit_hash_length = 4
-tag_symbol = " "
-
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = "[🍒 PICKING](bold red)"
-
-[git_status]
-conflicted = " 🏳 "
-ahead = " 🏎💨 "
-behind = " 😰 "
-diverged = " 😵 "
-untracked = " 🤷 ‍"
-stashed = " 📦 "
-modified = " 📝 "
-staged = '[++\($count\)](green)'
-renamed = " ✍️ "
-deleted = " 🗑 "
-
-[hostname]
-ssh_only = false
-format =  "[•$hostname](bg:blue bold fg:black)[](bold fg:blue)"
-trim_at = ".companyname.com"
-disabled = false
-
 [line_break]
 disabled = false
-
-[memory_usage]
-disabled = true
-threshold = -1
-symbol = " "
-style = "bold dimmed green"
-
-[time]
-disabled = true
-format = '🕙[\[ $time \]]($style) '
-time_format = "%T"
-
-[username]
-style_user = "bold bg:purple fg:black"
-style_root = "red bold"
-format = "[](bold fg:purple)[$user]($style)"
-disabled = false
-show_always = true
 
 [directory]
 home_symbol = " "
@@ -97,6 +44,7 @@ format = '[](bold fg:yellow)[󰉋 → $path]($style)[](bold fg:yellow)'
 "Pictures" = "  "
 "Videos" = "  "
 "GitHub" = " 󰊤 "
+"Projects" = " 󰊤 "
 
 [cmd_duration]
 min_time = 0
