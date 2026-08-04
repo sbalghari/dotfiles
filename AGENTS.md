@@ -20,6 +20,7 @@ config/
   atuin/             # Shell history (DB in .gitignore)
   chrome-flags.conf  # Chromium flags (Wayland, GTK4, etc.)
   code-flags.conf    # VS Code flags (same pattern)
+applications/        # .desktop files to hide from app launchers (Hidden=true)
 scripts/
   nvim               # Wrapper: launches kitty with zero padding then nvim
 ```
@@ -27,7 +28,9 @@ scripts/
 ## Key facts
 
 - **No build, test, lint, or typecheck setup.** Pure config files.
-- **Install** is symlink-based (no install script in repo — manual `stow` or `ln -s`).
+- **Install** is symlink-based via `./setup install` (Python script in repo root). Purely filesystem-based (no git operations). Commands: `install`, `uninstall`, `status`; flags: `-f/--force`, `-r/--repair` (force re-link/re-copy), `-n/--dry-run`.
+- **Hidden desktop entries**: curated copies of useless `.desktop` files live in `applications/` (with `Hidden=true`). `install` copies them into `~/.local/share/applications/`, shadowing the system entries. Add/remove files there to change what's hidden.
+- **Symlink map is dynamic**: `config/*` -> `~/.config/*` and `scripts/*` -> `~/.local/bin/*` are discovered by scanning, so new configs are picked up automatically.
 - **`scripts/nvim`** overrides `nvim` — wraps it to temporarily hide kitty padding.
 - **`.gitignore`** excludes generated theme files (Noctalia renders templates at runtime). These are listed explicitly.
 - **`.vscode/settings.json`** adds Hyprland Lua stubs for `Lua.workspace.library` — needed if editing Hyprland Lua configs in VS Code.
@@ -38,6 +41,12 @@ scripts/
 
 1. Create `config/<app>/` directory.
 2. Add any generated paths to `.gitignore` (see existing entries for pattern).
+
+## Hiding a desktop entry
+
+1. Copy the `.desktop` file from `/usr/share/applications/` into `applications/`.
+2. Append `Hidden=true` to the copy.
+3. Run `./setup install --repair` to re-copy the curated set.
 
 ## Common operations
 
