@@ -122,7 +122,6 @@ alias yu='yay -Syu --noconfirm --needed'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
-alias nvim='~/Projects/dotfiles/scripts/nvim'
 
 # Quick Commands
 alias path='echo $PATH | tr ":" "\n"'

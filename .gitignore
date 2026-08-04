@@ -1,12 +1,14 @@
 config/atuin/history.db
 config/atuin/history.db-shm
 config/atuin/history.db-wal
+config/hypr/secrets.lua
+
 config/gtk-3.0/noctalia.css
 config/hypr/noctalia.lua
+config/hypr/hyprtoolkit.conf
 config/kitty/current-theme.conf
 config/kitty/themes/
 config/fish/fish_variables
 config/qt5ct/colors/
 config/qt6ct/colors/
 config/nvim/lua/matugen.lua
-config/hypr/secrets.lua
