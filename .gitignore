@@ -3,6 +3,7 @@ config/atuin/history.db-shm
 config/atuin/history.db-wal
 config/hypr/secrets.lua
 
+config/gtk-4.0/noctalia.css
 config/gtk-3.0/noctalia.css
 config/hypr/noctalia.lua
 config/hypr/hyprtoolkit.conf

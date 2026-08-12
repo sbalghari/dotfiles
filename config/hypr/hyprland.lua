@@ -16,8 +16,7 @@ require("secrets").load()
 
 -- Startup Apps & Services
 hl.on("hyprland.start", function()
-    hl.exec_cmd("noctalia")
-    hl.exec_cmd("systemctl --user start --now hyprpolkitagent")
-    hl.exec_cmd("udiskie &")
-    hl.exec_cmd("devify &")
+	hl.exec_cmd("noctalia")
+	hl.exec_cmd("udiskie &")
+	hl.exec_cmd("devify &")
 end)
