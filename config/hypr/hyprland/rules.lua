@@ -15,7 +15,7 @@ hl.window_rule({
     name   = "windowrule-3",
     match  = {
         class =
-        "(mpv)|(waypaper)|(dev.noctalia.Noctalia.Settings)|(org.gnome.Loupe)|(io.missioncenter.MissionCenter)|(org.kde.dolphin)|(org.gnome.Nautilus)|(vlc)|(com.github.th_ch.youtube_music)|(org.gnome.TextEditor)|(org.kde.ark)",
+        "(mpv)|(waypaper)|(dev.noctalia.Noctalia.*)|(org.gnome.Loupe)|(io.missioncenter.MissionCenter)|(org.kde.dolphin)|(org.gnome.Nautilus)|(vlc)|(com.github.th_ch.youtube_music)|(com.github.th-ch.youtube-music)|(net.lutris.Lutris)|(org-tlauncher-tlauncher-rmo-TLauncher)|(org.gnome.TextEditor)|(org.kde.ark)",
     },
     float  = true,
     center = 1,
