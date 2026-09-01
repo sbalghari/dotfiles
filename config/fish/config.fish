@@ -124,7 +124,6 @@ alias vi='nvim'
 alias vim='nvim'
 
 # Quick Commands
-alias path='echo $PATH | tr ":" "\n"'
 alias reload='source ~/.config/fish/config.fish'
 alias c='printf "\e[3J\e[H\e[2J"'
 alias cls='printf "\e[3J\e[H\e[2J"'
