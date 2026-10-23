@@ -118,6 +118,9 @@ alias yi='yay --noconfirm --needed -S'
 alias yr='yay -Rns'
 alias yu='yay -Syu --noconfirm --needed'
 
+# Python
+alias uvx='uv run'
+
 # Editors
 alias v='nvim'
 alias vi='nvim'
