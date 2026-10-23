@@ -13,3 +13,6 @@ config/fish/fish_variables
 config/qt5ct/colors/
 config/qt6ct/colors/
 config/nvim/lua/matugen.lua
+
+# Agent context files (local only)
+AGENTS.md
